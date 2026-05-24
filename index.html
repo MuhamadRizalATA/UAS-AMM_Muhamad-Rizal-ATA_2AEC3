@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Langkah Lokal | Tokopedia Style</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#f5f5f5;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav{
+            background:#03ac0e;
+            padding:15px 50px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            position:sticky;
+            top:0;
+            z-index:1000;
+        }
+
+        .logo{
+            color:white;
+            font-size:34px;
+            font-weight:bold;
+        }
+
+        .search-box{
+            width:50%;
+        }
+
+        .search-box input{
+            width:100%;
+            padding:13px 18px;
+            border:none;
+            border-radius:10px;
+            outline:none;
+            font-size:15px;
+        }
+
+        .menu{
+            color:white;
+            font-size:20px;
+            font-weight:bold;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero{
+            background:linear-gradient(to right,#03ac0e,#00c853);
+            color:white;
+            padding:70px 50px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            flex-wrap:wrap;
+        }
+
+        .hero-text{
+            max-width:550px;
+        }
+
+        .hero h1{
+            font-size:70px;
+            margin-bottom:25px;
+            line-height:1.1;
+        }
+
+        .hero p{
+            font-size:22px;
+            line-height:1.7;
+            margin-bottom:30px;
+        }
+
+        .btn{
+            background:white;
+            color:#03ac0e;
+            border:none;
+            padding:15px 30px;
+            border-radius:12px;
+            font-size:18px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            transform:scale(1.05);
+        }
+
+        .hero img{
+            width:500px;
+            border-radius:25px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.2);
+            margin-top:20px;
+        }
+
+        /* ================= CATEGORY ================= */
+
+        .category{
+            padding:35px 50px;
+        }
+
+        .category h2{
+            margin-bottom:20px;
+            color:#333;
+            font-size:35px;
+        }
+
+        .category-list{
+            display:flex;
+            gap:15px;
+            flex-wrap:wrap;
+        }
+
+        .category-item{
+            background:white;
+            padding:15px 25px;
+            border-radius:12px;
+            cursor:pointer;
+            box-shadow:0 4px 12px rgba(0,0,0,0.08);
+            transition:0.3s;
+            font-weight:bold;
+        }
+
+        .category-item:hover{
+            background:#03ac0e;
+            color:white;
+        }
+
+        /* ================= PRODUCTS ================= */
+
+        .products{
+            padding:20px 50px 60px;
+        }
+
+        .products h2{
+            margin-bottom:25px;
+            color:#333;
+            font-size:35px;
+        }
+
+        .product-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:25px;
+        }
+
+        .product-card{
+            background:white;
+            border-radius:18px;
+            overflow:hidden;
+            box-shadow:0 5px 18px rgba(0,0,0,0.08);
+            transition:0.3s;
+        }
+
+        .product-card:hover{
+            transform:translateY(-6px);
+        }
+
+        .product-img{
+            width:100%;
+            height:250px;
+            object-fit:cover;
+        }
+
+        .product-content{
+            padding:18px;
+        }
+
+        .product-title{
+            font-size:22px;
+            margin-bottom:10px;
+            color:#222;
+        }
+
+        .price{
+            color:#03ac0e;
+            font-size:30px;
+            font-weight:bold;
+            margin-bottom:12px;
+        }
+
+        .desc{
+            color:#666;
+            line-height:1.6;
+            margin-bottom:18px;
+        }
+
+        .btn-buy{
+            width:100%;
+            padding:13px;
+            border:none;
+            border-radius:10px;
+            background:#03ac0e;
+            color:white;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .btn-buy:hover{
+            background:#028a0c;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer{
+            background:white;
+            padding:35px;
+            text-align:center;
+            color:#666;
+            border-top:1px solid #ddd;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width:768px){
+
+            nav{
+                flex-direction:column;
+                gap:15px;
+                padding:15px 20px;
+            }
+
+            .search-box{
+                width:100%;
+            }
+
+            .hero{
+                padding:50px 20px;
+                text-align:center;
+            }
+
+            .hero h1{
+                font-size:45px;
+            }
+
+            .hero p{
+                font-size:18px;
+            }
+
+            .hero img{
+                width:100%;
+            }
+
+            .category,
+            .products{
+                padding:20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+            LangkahLokal
+        </div>
+
+        <div class="search-box">
+
+            <input 
+                type="text"
+                id="searchInput"
+                placeholder="Cari nama sepatu..."
+                onkeyup="searchProduct()"
+            >
+
+        </div>
+
+        <div class="menu">
+            Keranjang 🛒
+        </div>
+
+    </nav>
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <h1>
+                Sepatu Lokal <br>
+                Rasa Premium
+            </h1>
+
+            <p>
+                Produk lokal berkualitas tinggi dengan desain modern,
+                nyaman dipakai harian dan cocok untuk semua outfit.
+            </p>
+
+            <button class="btn">
+                Belanja Sekarang
+            </button>
+
+        </div>
+
+        <!-- HERO IMAGE BARU -->
+
+        <img 
+            src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=1000"
+            alt="Sepatu Premium"
+        >
+
+    </section>
+
+    <!-- ================= CATEGORY ================= -->
+
+    <section class="category">
+
+        <h2>Kategori Populer</h2>
+
+        <div class="category-list">
+
+            <div class="category-item" onclick="filterCategory('all')">
+                Semua
+            </div>
+
+            <div class="category-item" onclick="filterCategory('sneakers')">
+                Sneakers
+            </div>
+
+            <div class="category-item" onclick="filterCategory('running')">
+                Running
+            </div>
+
+            <div class="category-item" onclick="filterCategory('casual')">
+                Casual
+            </div>
+
+            <div class="category-item" onclick="filterCategory('high-top')">
+                High Top
+            </div>
+
+            <div class="category-item" onclick="filterCategory('streetwear')">
+                Streetwear
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= PRODUCTS ================= -->
+
+    <section class="products">
+
+        <h2>Produk Terlaris</h2>
+
+        <div class="product-grid">
+
+            <!-- 1 -->
+            <div class="product-card" data-category="sneakers high-top">
+
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600"
+                class="product-img">
+
+                <div class="product-content">
+
+                    <h3 class="product-title">
+                        Seri Merdeka - Blue White
+                    </h3>
+
+                    <div class="price">
+                        Rp350.000
+                    </div>
+
+                    <div class="desc">
+                        High top design dengan material premium.
+                    </div>
+
+                    <button class="btn-buy">
+                        + Keranjang
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- 2 -->
+            <div class="product-card" data-category="casual streetwear">
+
+                <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=600"
+                class="product-img">
+
+                <div class="product-content">
+
+                    <h3 class="product-title">
+                        Seri Klasik - Urban Green
+                    </h3>
+
+                    <div class="price">
+                        Rp299.000
+                    </div>
+
+                    <div class="desc">
+                        Casual modern dengan canvas premium.
+                    </div>
+
+                    <button class="btn-buy">
+                        + Keranjang
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- 3 -->
+            <div class="product-card" data-category="running sneakers">
+
+                <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=600"
+                class="product-img">
+
+                <div class="product-content">
+
+                    <h3 class="product-title">
+                        Urban Black Edition
+                    </h3>
+
+                    <div class="price">
+                        Rp420.000
+                    </div>
+
+                    <div class="desc">
+                        Nyaman untuk olahraga dan harian.
+                    </div>
+
+                    <button class="btn-buy">
+                        + Keranjang
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- 4 -->
+            <div class="product-card" data-category="casual sneakers">
+
+                <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?q=80&w=600"
+                class="product-img">
+
+                <div class="product-content">
+
+                    <h3 class="product-title">
+                        Retro Cream Brown
+                    </h3>
+
+                    <div class="price">
+                        Rp389.000
+                    </div>
+
+                    <div class="desc">
+                        Retro style modern dan ringan dipakai.
+                    </div>
+
+                    <button class="btn-buy">
+                        + Keranjang
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- 5 -->
+            <div class="product-card" data-category="running">
+
+                <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?q=80&w=600"
+                class="product-img">
+
+                <div class="product-content">
+
+                    <h3 class="product-title">
+                        Runner X Neon
+                    </h3>
+
+                    <div class="price">
+                        Rp410.000
+                    </div>
+
+                    <div class="desc">
+                        Sol empuk dan ringan untuk running.
+                    </div>
+
+                    <button class="btn-buy">
+                        + Keranjang
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- 6 -->
+            <div class="product-card" data-category="streetwear">
+
+                <img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?q=80&w=600"
+                class="product-img">
+
+                <div class="product-content">
+
+                    <h3 class="product-title">
+                        Street Force Black
+                    </h3>
+
+                    <div class="price">
+                        Rp365.000
+                    </div>
+
+                    <div class="desc">
+                        Cocok untuk outfit streetwear modern.
+                    </div>
+
+                    <button class="btn-buy">
+                        + Keranjang
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- 7 -->
+            <div class="product-card" data-category="high-top">
+
+                <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=600"
+                class="product-img">
+
+                <div class="product-content">
+
+                    <h3 class="product-title">
+                        High Rise White Grey
+                    </h3>
+
+                    <div class="price">
+                        Rp440.000
+                    </div>
+
+                    <div class="desc">
+                        High top premium dengan desain elegan.
+                    </div>
+
+                    <button class="btn-buy">
+                        + Keranjang
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- 8 -->
+            <div class="product-card" data-category="casual">
+
+                <img src="https://images.unsplash.com/photo-1543508282-6319a3e2621f?q=80&w=600"
+                class="product-img">
+
+                <div class="product-content">
+
+                    <h3 class="product-title">
+                        Daily Walk Navy
+                    </h3>
+
+                    <div class="price">
+                        Rp275.000
+                    </div>
+
+                    <div class="desc">
+                        Nyaman untuk aktivitas sehari-hari.
+                    </div>
+
+                    <button class="btn-buy">
+                        + Keranjang
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- 9 -->
+            <div class="product-card" data-category="running sneakers">
+
+                <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=600"
+                class="product-img">
+
+                <div class="product-content">
+
+                    <h3 class="product-title">
+                        Fast Runner Orange
+                    </h3>
+
+                    <div class="price">
+                        Rp395.000
+                    </div>
+
+                    <div class="desc">
+                        Breathable mesh dan sol empuk.
+                    </div>
+
+                    <button class="btn-buy">
+                        + Keranjang
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- 10 -->
+            <div class="product-card" data-category="streetwear casual">
+
+                <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=600"
+                class="product-img">
+
+                <div class="product-content">
+
+                    <h3 class="product-title">
+                        Street Low Beige
+                    </h3>
+
+                    <div class="price">
+                        Rp330.000
+                    </div>
+
+                    <div class="desc">
+                        Warna aesthetic dan simple modern.
+                    </div>
+
+                    <button class="btn-buy">
+                        + Keranjang
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            <strong>Langkah Lokal Footwear</strong>
+        </p>
+
+        <br>
+
+        <p>
+            WhatsApp: 0882-1866-2492
+        </p>
+
+        <p>
+            Garansi Tukar Size 7 Hari • Pembayaran Aman
+        </p>
+
+        <br>
+
+        <p>
+            © 2026 Langkah Lokal
+        </p>
+
+    </footer>
+
+    <!-- ================= SCRIPT ================= -->
+
+    <script>
+
+        // SEARCH PRODUK
+
+        function searchProduct(){
+
+            let input = document
+                .getElementById("searchInput")
+                .value
+                .toLowerCase();
+
+            let products = document.querySelectorAll(".product-card");
+
+            products.forEach(product => {
+
+                let title = product
+                    .querySelector(".product-title")
+                    .innerText
+                    .toLowerCase();
+
+                if(title.includes(input)){
+                    product.style.display = "block";
+                }
+                else{
+                    product.style.display = "none";
+                }
+
+            });
+
+        }
+
+        // FILTER KATEGORI
+
+        function filterCategory(category){
+
+            let products = document.querySelectorAll(".product-card");
+
+            products.forEach(product => {
+
+                let categories = product.dataset.category;
+
+                if(category === "all"){
+                    product.style.display = "block";
+                }
+                else if(categories.includes(category)){
+                    product.style.display = "block";
+                }
+                else{
+                    product.style.display = "none";
+                }
+
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>

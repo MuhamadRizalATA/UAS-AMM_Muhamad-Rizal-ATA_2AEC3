@@ -1,243 +1,842 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SepatuLangkah Lokal | Katalog Sepatu Lokal</title>
 
-    <title>Langkah Lokal | Galeri Sepatu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    <link rel="stylesheet" href="style.css">
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f6f1e9;
+            color: #1f2937;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* ================= NAVBAR ================= */
+        nav {
+            width: 100%;
+            padding: 18px 9%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #111827;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #111827;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #c96b3b;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-menu a {
+            color: #1f2937;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .nav-menu a:hover {
+            color: #c96b3b;
+        }
+
+        .nav-tag {
+            background: #f3c969;
+            color: #111827;
+            border: 2px solid #111827;
+            border-radius: 999px;
+            padding: 10px 18px;
+            font-weight: 900;
+            box-shadow: 4px 4px 0 #111827;
+        }
+
+        /* ================= HERO ================= */
+        .hero {
+            min-height: 85vh;
+            padding: 70px 9%;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 50px;
+            background:
+                radial-gradient(circle at top left, rgba(243, 201, 105, 0.35), transparent 28%),
+                radial-gradient(circle at bottom right, rgba(201, 107, 59, 0.18), transparent 24%),
+                #f6f1e9;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 9px 15px;
+            background: #111827;
+            color: #fff;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 68px;
+            line-height: 0.98;
+            letter-spacing: -2px;
+            margin-bottom: 22px;
+            color: #111827;
+        }
+
+        .hero-content h1 span {
+            color: #c96b3b;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #4b5563;
+            max-width: 580px;
+            margin-bottom: 28px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            display: inline-block;
+            padding: 14px 24px;
+            border-radius: 12px;
+            border: 2px solid #111827;
+            font-weight: 900;
+            transition: 0.25s;
+        }
+
+        .btn-primary {
+            background: #c96b3b;
+            color: #fff;
+            box-shadow: 5px 5px 0 #111827;
+        }
+
+        .btn-secondary {
+            background: #fff;
+            color: #111827;
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            transform: translateY(-4px);
+        }
+
+        .hero-card {
+            background: #fff;
+            border: 2px solid #111827;
+            border-radius: 26px;
+            overflow: hidden;
+            box-shadow: 10px 10px 0 #111827;
+            transform: rotate(1.4deg);
+        }
+
+        .hero-card img {
+            width: 100%;
+            height: 430px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-card-info {
+            padding: 22px;
+        }
+
+        .hero-card-info h3 {
+            font-size: 26px;
+            margin-bottom: 8px;
+            color: #111827;
+        }
+
+        .hero-card-info p {
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* ================= ABOUT ================= */
+        .about {
+            padding: 60px 9%;
+            background: #111827;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .about-box {
+            border: 2px solid #fff;
+            border-radius: 18px;
+            padding: 25px;
+        }
+
+        .about-box h3 {
+            color: #f3c969;
+            margin-bottom: 12px;
+            font-size: 24px;
+        }
+
+        .about-box p {
+            color: #e5e7eb;
+            line-height: 1.7;
+        }
+
+        /* ================= SECTION TITLE ================= */
+        .section-title {
+            margin-bottom: 24px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            color: #111827;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .section-title p {
+            color: #6b7280;
+            line-height: 1.8;
+            max-width: 700px;
+        }
+
+        /* ================= CATEGORY ================= */
+        .category {
+            padding: 70px 9% 25px;
+        }
+
+        .search-box {
+            margin: 28px 0;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 16px 18px;
+            font-size: 16px;
+            border: 2px solid #111827;
+            border-radius: 14px;
+            outline: none;
+            background: #fff;
+            box-shadow: 5px 5px 0 #111827;
+        }
+
+        .category-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .category-item {
+            padding: 12px 18px;
+            border: 2px solid #111827;
+            border-radius: 999px;
+            background: #fff;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .category-item:hover,
+        .category-item.active {
+            background: #f3c969;
+            transform: translateY(-3px);
+        }
+
+        /* ================= PRODUCTS ================= */
+        .products {
+            padding: 35px 9% 80px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+            gap: 26px;
+        }
+
+        .product-card {
+            background: #fff;
+            border: 2px solid #111827;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 8px 8px 0 #111827;
+            transition: 0.25s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 11px 11px 0 #111827;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 2px solid #111827;
+            background: #f1f1f1;
+        }
+
+        .product-content {
+            padding: 22px;
+        }
+
+        .category-label {
+            display: inline-block;
+            background: #f3c969;
+            border: 2px solid #111827;
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 900;
+            margin-bottom: 14px;
+        }
+
+        .product-title {
+            font-size: 21px;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .product-code {
+            font-size: 14px;
+            color: #6b7280;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .desc {
+            font-size: 15px;
+            color: #4b5563;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .feature-list span {
+            font-size: 12px;
+            font-weight: 800;
+            background: #f8f5ef;
+            border: 1.5px solid #111827;
+            border-radius: 999px;
+            padding: 6px 10px;
+        }
+
+        .btn-detail {
+            width: 100%;
+            padding: 13px;
+            border: 2px solid #111827;
+            border-radius: 12px;
+            background: #111827;
+            color: #fff;
+            font-weight: 900;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .btn-detail:hover {
+            background: #c96b3b;
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: #111827;
+            color: #fff;
+            padding: 45px 9%;
+            text-align: center;
+        }
+
+        footer h2 {
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        footer p {
+            color: #d1d5db;
+            line-height: 1.8;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 900px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 16px 6%;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 16px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 55px 6%;
+            }
+
+            .hero-content h1 {
+                font-size: 48px;
+            }
+
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-card {
+                transform: none;
+            }
+
+            .hero-card img {
+                height: 320px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                padding: 45px 6%;
+            }
+
+            .category,
+            .products {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+
+            .section-title h2 {
+                font-size: 34px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .logo {
+                font-size: 23px;
+            }
+
+            .hero-content h1 {
+                font-size: 40px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
+    <!-- ================= NAVBAR ================= -->
     <nav>
+        <div class="logo">Sepatu<span>Langkah</span> Lokal</div>
 
-        <div class="logo">
-            LangkahLokal
+        <div class="nav-menu">
+            <a href="#tentang">Tentang</a>
+            <a href="#kategori">Kategori</a>
+            <a href="#koleksi">Koleksi</a>
+            <div class="nav-tag">Made in Indonesia</div>
+        </div>
+    </nav>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Brand Sepatu Lokal</div>
+
+            <h1>
+                Setiap Langkah <br>
+                Punya <span>Karakter</span>
+            </h1>
+
+            <p>
+                SepatuLangkah Lokal adalah katalog sepatu lokal dengan berbagai pilihan desain:
+                sneakers, running, casual, formal, slip-on, outdoor, hingga streetwear.
+                Cocok untuk sekolah, kuliah, kerja, olahraga, dan aktivitas harian.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#koleksi" class="btn-primary">Lihat Koleksi</a>
+                <a href="#kategori" class="btn-secondary">Pilih Kategori</a>
+            </div>
+        </div>
+
+        <div class="hero-card">
+            <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=1200" alt="Sepatu Lokal Premium">
+            <div class="hero-card-info">
+                <h3>Koleksi Sepatu Lokal</h3>
+                <p>20 tipe sepatu lokal pilihan dengan gaya modern, simpel, dan nyaman dipakai harian.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="about" id="tentang">
+        <div class="about-box">
+            <h3>Desain Lokal</h3>
+            <p>
+                Mengangkat gaya anak muda Indonesia dengan desain simpel, modern,
+                dan mudah dipadukan dengan berbagai outfit.
+            </p>
+        </div>
+
+        <div class="about-box">
+            <h3>Nyaman Harian</h3>
+            <p>
+                Setiap tipe dibuat untuk kebutuhan berbeda, mulai dari kuliah,
+                kerja, jalan santai, olahraga ringan, sampai traveling.
+            </p>
+        </div>
+
+        <div class="about-box">
+            <h3>Katalog Informatif</h3>
+            <p>
+                Website ini bukan halaman jual beli, tetapi katalog untuk mengenalkan
+                tipe, kategori, dan karakter dari setiap sepatu.
+            </p>
+        </div>
+    </section>
+
+    <!-- ================= CATEGORY ================= -->
+    <section class="category" id="kategori">
+        <div class="section-title">
+            <h2>Kategori Sepatu</h2>
+            <p>
+                Gunakan kategori di bawah untuk melihat jenis sepatu sesuai kebutuhan.
+                Kamu juga bisa mencari nama sepatu melalui kolom pencarian.
+            </p>
         </div>
 
         <div class="search-box">
             <input
                 type="text"
                 id="searchInput"
-                placeholder="Cari koleksi sepatu..."
-                onkeyup="searchProduct()">
+                placeholder="Cari nama sepatu, contoh: Merdeka, Senja, Kompas..."
+                onkeyup="searchProduct()"
+            >
         </div>
-
-        <div class="menu">
-            Koleksi 2026
-        </div>
-
-    </nav>
-
-    <section class="hero">
-
-        <div class="hero-text">
-
-            <h1>
-                Koleksi Sepatu Modern
-            </h1>
-
-            <p>
-                Inspirasi desain sepatu modern dengan berbagai gaya,
-                mulai dari sneakers hingga streetwear.
-            </p>
-
-            <button class="btn">
-                Jelajahi Koleksi
-            </button>
-
-        </div>
-
-        <img
-        src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=1000"
-        alt="Sepatu">
-
-    </section>
-
-    <section class="about">
-
-        <h2>Tentang Website</h2>
-
-        <p>
-            Langkah Lokal merupakan galeri online yang menampilkan
-            berbagai inspirasi model sepatu modern dengan desain
-            yang menarik dan nyaman digunakan.
-        </p>
-
-    </section>
-
-    <section class="category">
-
-        <h2>Jenis Sepatu</h2>
 
         <div class="category-list">
-
-            <div class="category-item" onclick="filterCategory('all')">
-                Semua
-            </div>
-
-            <div class="category-item" onclick="filterCategory('sneakers')">
-                Sneakers
-            </div>
-
-            <div class="category-item" onclick="filterCategory('running')">
-                Running
-            </div>
-
-            <div class="category-item" onclick="filterCategory('casual')">
-                Casual
-            </div>
-
-            <div class="category-item" onclick="filterCategory('streetwear')">
-                Streetwear
-            </div>
-
+            <div class="category-item active" onclick="filterCategory('all', this)">Semua</div>
+            <div class="category-item" onclick="filterCategory('sneakers', this)">Sneakers</div>
+            <div class="category-item" onclick="filterCategory('running', this)">Running</div>
+            <div class="category-item" onclick="filterCategory('casual', this)">Casual</div>
+            <div class="category-item" onclick="filterCategory('formal', this)">Formal</div>
+            <div class="category-item" onclick="filterCategory('outdoor', this)">Outdoor</div>
+            <div class="category-item" onclick="filterCategory('slip-on', this)">Slip On</div>
+            <div class="category-item" onclick="filterCategory('high-top', this)">High Top</div>
+            <div class="category-item" onclick="filterCategory('streetwear', this)">Streetwear</div>
         </div>
-
     </section>
 
-    <section class="products">
-
-        <h2>Galeri Sepatu</h2>
-
-        <div class="product-grid">
-
-            <div class="product-card" data-category="sneakers">
-
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600">
-
-                <div class="content">
-
-                    <h3 class="product-title">
-                        Blue White Sneakers
-                    </h3>
-
-                    <p>
-                        Sneakers modern dengan kombinasi warna biru dan putih.
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="product-card" data-category="casual">
-
-                <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?q=80&w=600">
-
-                <div class="content">
-
-                    <h3 class="product-title">
-                        Retro Cream
-                    </h3>
-
-                    <p>
-                        Desain retro yang elegan dan cocok untuk sehari-hari.
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="product-card" data-category="running">
-
-                <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?q=80&w=600">
-
-                <div class="content">
-
-                    <h3 class="product-title">
-                        Runner X
-                    </h3>
-
-                    <p>
-                        Cocok digunakan untuk aktivitas olahraga ringan.
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="product-card" data-category="streetwear">
-
-                <img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?q=80&w=600">
-
-                <div class="content">
-
-                    <h3 class="product-title">
-                        Street Force
-                    </h3>
-
-                    <p>
-                        Karakter kuat untuk gaya streetwear modern.
-                    </p>
-
-                </div>
-
-            </div>
-
+    <!-- ================= PRODUCTS ================= -->
+    <section class="products" id="koleksi">
+        <div class="section-title">
+            <h2>20 Tipe SepatuLangkah Lokal</h2>
+            <p>
+                Setiap koleksi memiliki karakter berbeda. Pilih berdasarkan gaya,
+                aktivitas, dan kenyamanan yang kamu butuhkan.
+            </p>
         </div>
 
+        <div class="product-grid" id="productGrid"></div>
     </section>
 
+    <!-- ================= FOOTER ================= -->
     <footer>
-
-        <h3>Langkah Lokal</h3>
-
-        <p>Website galeri dan inspirasi sepatu modern.</p>
-
+        <h2>SepatuLangkah Lokal</h2>
+        <p>
+            Katalog brand sepatu lokal Indonesia dengan 20 tipe dan berbagai kategori.
+            Website ini dibuat sebagai halaman informasi, bukan halaman transaksi jual beli.
+        </p>
         <br>
-
-        <p>© 2026 Langkah Lokal</p>
-
+        <p>© 2026 SepatuLangkah Lokal • Bangga Pakai Produk Lokal</p>
     </footer>
 
-<script>
+    <script>
+        const products = [
+            {
+                name: "Merdeka High",
+                code: "LL-001",
+                label: "Sneakers • High Top",
+                category: "sneakers high-top streetwear",
+                desc: "Sepatu high top dengan karakter kuat, cocok untuk gaya streetwear dan outfit kasual.",
+                features: ["Bold", "Ankle Support", "Street Look"],
+                image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=800"
+            },
+            {
+                name: "Klasik Kota",
+                code: "LL-002",
+                label: "Casual • Sneakers",
+                category: "casual sneakers",
+                desc: "Desain retro ringan untuk aktivitas kampus, nongkrong, dan jalan santai.",
+                features: ["Retro", "Ringan", "Daily"],
+                image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?q=80&w=800"
+            },
+            {
+                name: "Nusa Runner",
+                code: "LL-003",
+                label: "Running",
+                category: "running sneakers",
+                desc: "Sepatu running ringan dengan tampilan sporty untuk olahraga dan aktivitas aktif.",
+                features: ["Sporty", "Breathable", "Empuk"],
+                image: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=800"
+            },
+            {
+                name: "Urban Aksara",
+                code: "LL-004",
+                label: "Streetwear",
+                category: "streetwear casual",
+                desc: "Model urban dengan visual tegas, cocok untuk outfit oversized dan denim.",
+                features: ["Urban", "Tegas", "Modern"],
+                image: "https://images.unsplash.com/photo-1514989940723-e8e51635b782?q=80&w=800"
+            },
+            {
+                name: "Santai Slip",
+                code: "LL-005",
+                label: "Slip On • Casual",
+                category: "casual slip-on",
+                desc: "Slip on simpel yang mudah dipakai, cocok untuk kegiatan cepat dan santai.",
+                features: ["Praktis", "Minimalis", "Daily"],
+                image: "https://images.unsplash.com/photo-1543508282-6319a3e2621f?q=80&w=800"
+            },
+            {
+                name: "Jejak Alam",
+                code: "LL-006",
+                label: "Outdoor",
+                category: "outdoor running",
+                desc: "Dibuat untuk eksplorasi ringan, traveling, dan jalan di area luar ruangan.",
+                features: ["Grip", "Travel", "Tahan Pakai"],
+                image: "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?q=80&w=800"
+            },
+            {
+                name: "Rapi Hitam",
+                code: "LL-007",
+                label: "Formal",
+                category: "formal casual",
+                desc: "Sepatu formal modern untuk kerja, presentasi, dan acara resmi kampus.",
+                features: ["Formal", "Clean", "Elegan"],
+                image: "https://images.unsplash.com/photo-1614253429340-98120bd6d753?q=80&w=800"
+            },
+            {
+                name: "Senja Cream",
+                code: "LL-008",
+                label: "Sneakers",
+                category: "sneakers casual",
+                desc: "Warna cream hangat dengan desain bersih, mudah masuk ke outfit apa pun.",
+                features: ["Clean", "Aesthetic", "Neutral"],
+                image: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=800"
+            },
+            {
+                name: "Cepat Lite",
+                code: "LL-009",
+                label: "Running",
+                category: "running",
+                desc: "Sepatu ringan untuk jogging, olahraga ringan, dan kegiatan aktif sehari-hari.",
+                features: ["Lite", "Fleksibel", "Sport"],
+                image: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=800"
+            },
+            {
+                name: "Tinggi Bara",
+                code: "LL-010",
+                label: "High Top",
+                category: "streetwear high-top",
+                desc: "High top bergaya tegas dengan nuansa muda, cocok untuk tampil percaya diri.",
+                features: ["High Top", "Statement", "Street"],
+                image: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?q=80&w=800"
+            },
+            {
+                name: "Langkah Putih",
+                code: "LL-011",
+                label: "Casual",
+                category: "casual",
+                desc: "Sepatu putih minimalis untuk gaya bersih, rapi, dan nyaman dipakai harian.",
+                features: ["Minimalis", "Clean", "Daily"],
+                image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=800"
+            },
+            {
+                name: "Gunung Muda",
+                code: "LL-012",
+                label: "Outdoor • Casual",
+                category: "outdoor casual",
+                desc: "Desain outdoor casual yang tetap keren untuk dipakai di kota.",
+                features: ["Outdoor", "Casual", "Kuat"],
+                image: "https://images.unsplash.com/photo-1520256862855-398228c41684?q=80&w=800"
+            },
+            {
+                name: "Kantor Coklat",
+                code: "LL-013",
+                label: "Formal",
+                category: "formal",
+                desc: "Formal coklat klasik untuk tampilan dewasa, rapi, dan profesional.",
+                features: ["Classic", "Rapi", "Office"],
+                image: "https://images.unsplash.com/photo-1614253429340-98120bd6d753?q=80&w=800"
+            },
+            {
+                name: "Lokal Canvas Low",
+                code: "LL-014",
+                label: "Casual • Sneakers",
+                category: "casual sneakers",
+                desc: "Sepatu canvas low cut bergaya lokal, simpel, ringan, dan nyaman untuk aktivitas harian.",
+                features: ["Canvas", "Low Cut", "Lokal"],
+                image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?q=80&w=800"
+            },
+            {
+                name: "Kompas Low",
+                code: "LL-015",
+                label: "Sneakers • Streetwear",
+                category: "sneakers streetwear",
+                desc: "Low sneakers dengan desain tajam untuk tampilan urban yang tetap simpel.",
+                features: ["Low Cut", "Urban", "Sharp"],
+                image: "https://images.unsplash.com/photo-1579338559194-a162d19bf842?q=80&w=800"
+            },
+            {
+                name: "Hujan Runner",
+                code: "LL-016",
+                label: "Running • Outdoor",
+                category: "running outdoor",
+                desc: "Sepatu aktif dengan grip lebih stabil untuk jalan pagi dan aktivitas luar ruangan.",
+                features: ["Grip", "Stabil", "Aktif"],
+                image: "https://images.unsplash.com/photo-1539185441755-769473a23570?q=80&w=800"
+            },
+            {
+                name: "Pasar Baru",
+                code: "LL-017",
+                label: "Casual • Streetwear",
+                category: "casual streetwear",
+                desc: "Terinspirasi gaya kota, cocok untuk look kasual yang lebih ekspresif.",
+                features: ["Ekspresif", "Kota", "Kasual"],
+                image: "https://images.unsplash.com/photo-1600181516264-3ea807ff44b9?q=80&w=800"
+            },
+            {
+                name: "Garuda High",
+                code: "LL-018",
+                label: "High Top • Sneakers",
+                category: "high-top sneakers",
+                desc: "High top dengan siluet kuat untuk kamu yang suka gaya standout.",
+                features: ["Standout", "High", "Bold"],
+                image: "https://images.unsplash.com/photo-1533867617858-e7b97e060509?q=80&w=800"
+            },
+            {
+                name: "Presentasi Navy",
+                code: "LL-019",
+                label: "Formal • Casual",
+                category: "formal casual",
+                desc: "Model semi-formal untuk presentasi, meeting, dan kegiatan kampus yang rapi.",
+                features: ["Semi Formal", "Navy", "Rapi"],
+                image: "https://images.unsplash.com/photo-1605733160314-4fc7dac4bb16?q=80&w=800"
+            },
+            {
+                name: "Pulang Sore",
+                code: "LL-020",
+                label: "Sneakers • Casual",
+                category: "sneakers casual slip-on",
+                desc: "Sepatu santai bernuansa hangat untuk jalan sore, nongkrong, dan aktivitas ringan.",
+                features: ["Hangat", "Santai", "Daily"],
+                image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?q=80&w=800"
+            }
+        ];
 
-function searchProduct(){
+        const productGrid = document.getElementById("productGrid");
 
-    let input = document
-    .getElementById("searchInput")
-    .value.toLowerCase();
+        function showProducts(data) {
+            productGrid.innerHTML = "";
 
-    let products =
-    document.querySelectorAll(".product-card");
+            data.forEach(product => {
+                const featureHTML = product.features.map(feature => `<span>${feature}</span>`).join("");
 
-    products.forEach(product => {
+                productGrid.innerHTML += `
+                    <div class="product-card" data-category="${product.category}">
+                        <img src="${product.image}" class="product-img" alt="${product.name}">
 
-        let title =
-        product.querySelector(".product-title")
-        .innerText.toLowerCase();
+                        <div class="product-content">
+                            <span class="category-label">${product.label}</span>
+                            <h3 class="product-title">${product.name}</h3>
+                            <div class="product-code">Kode: ${product.code}</div>
+                            <div class="desc">${product.desc}</div>
 
-        if(title.includes(input)){
-            product.style.display = "block";
-        }else{
-            product.style.display = "none";
+                            <div class="feature-list">
+                                ${featureHTML}
+                            </div>
+
+                            <button class="btn-detail">Lihat Detail Koleksi</button>
+                        </div>
+                    </div>
+                `;
+            });
         }
 
-    });
+        showProducts(products);
 
-}
+        function searchProduct() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
 
-function filterCategory(category){
+            const filtered = products.filter(product =>
+                product.name.toLowerCase().includes(input) ||
+                product.desc.toLowerCase().includes(input) ||
+                product.label.toLowerCase().includes(input)
+            );
 
-    let products =
-    document.querySelectorAll(".product-card");
-
-    products.forEach(product => {
-
-        let cat = product.dataset.category;
-
-        if(category === "all" || cat.includes(category)){
-            product.style.display = "block";
-        }else{
-            product.style.display = "none";
+            showProducts(filtered);
         }
 
-    });
+        function filterCategory(category, element) {
+            const buttons = document.querySelectorAll(".category-item");
+            buttons.forEach(button => button.classList.remove("active"));
+            element.classList.add("active");
 
-}
+            if (category === "all") {
+                showProducts(products);
+            } else {
+                const filtered = products.filter(product =>
+                    product.category.includes(category)
+                );
+                showProducts(filtered);
+            }
 
-</script>
-
+            document.getElementById("koleksi").scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+    </script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 # Katalog SepatuLangkah Lokal
 
-Website ini merupakan landing page katalog sepatu lokal yang dibuat untuk memenuhi tugas UAS mata kuliah Aplikasi Multimedia.
+Website ini merupakan landing page katalog sepatu lokal yang dibuat untuk memenuhi tugas UAS mata kuliah Antarmuka Antar Mesin.
 
 Website ini menampilkan informasi produk sepatu lokal dengan desain sederhana, responsif, dan mudah digunakan oleh pengguna.
 
